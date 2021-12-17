@@ -1,0 +1,7 @@
+*               text=auto
+
+*.cs            text diff=csharp
+*.sln           text merge=union
+
+.gitattributes  export-ignore
+.gitignore      export-ignore
