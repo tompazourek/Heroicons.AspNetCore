@@ -17,7 +17,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageReleaseNotes>$(RepositoryUrl)/releases</PackageReleaseNotes>
-    <!--<PackageIcon>logo_64.png</PackageIcon>-->
+    <PackageIcon>logo_64.png</PackageIcon>
     <PackageTags>icons taghelpers aspnet-core razor tailwindcss</PackageTags>
     <Description>Heroicons (https://heroicons.com/) that are easy to use in ASP.NET Core MVC as TagHelpers.</Description>
   </PropertyGroup>
@@ -40,6 +40,10 @@
   <Target Name="UpdateAppVeyorBuildVersion" AfterTargets="MinVer" Condition=" '$(APPVEYOR)' == 'true' ">
     <Exec Command="appveyor UpdateBuild -Version &quot;$(MinVerVersion)&quot;" />
   </Target>
+
+  <ItemGroup>
+    <None Include="..\..\assets\logo_64.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
