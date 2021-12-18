@@ -1,5 +1,7 @@
-﻿using Heroicons.AspNetCore.Mvc.TagHelpers;
+﻿var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddControllersWithViews();
 
-var tagHelper = new HeroiconTagHelper();
-tagHelper.Kind = HeroiconKind.Solid;
-tagHelper.Name = HeroiconName.Calculator;
+var app = builder.Build();
+app.UseRouting();
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.Run();
