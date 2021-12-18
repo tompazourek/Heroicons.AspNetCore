@@ -2,7 +2,7 @@
   "name": "Heroicons.Net",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Tom Pažourek <tom.pazourek@gmail.com>",
+  "author": "Tomáš Pažourek <tom.pazourek@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "heroicons": "^1.0.5"

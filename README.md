@@ -19,13 +19,13 @@ Download
 
 Binaries of the last build can be downloaded on the [AppVeyor CI page of the project](https://ci.appveyor.com/project/tompazourek/heroicons-aspnetcore/build/artifacts).
 
-The library is also [published on NuGet.org](https://www.nuget.org/packages/Heroicons.AspNetCore.Mvc.TagHelpers/) (prerelease), install using:
+The library is also [published on NuGet.org](https://www.nuget.org/packages/Heroicons.AspNetCore.Mvc.TagHelpers/), install using:
 
 ```
 PM> Install-Package Heroicons.AspNetCore.Mvc.TagHelpers
 ```
 
-<sup>Heroicons.AspNetCore.Mvc.TagHelpers is built only for .NET 6 and ASP.NET MVC Core.</sup>
+<sup>The package is built only for .NET 6 and ASP.NET MVC Core.</sup>
 
 Usage
 -----
@@ -50,3 +50,5 @@ Usage
 ```cshtml
 <heroicon class="ml-2 -mr-0.5 h-4 w-4" kind="Solid" name="Mail" />
 ```
+
+- You can also try the sample project in the `tests/` folder to see it running.
