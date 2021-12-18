@@ -5,7 +5,7 @@
 
 [![Build status](https://img.shields.io/appveyor/ci/tompazourek/heroicons-aspnetcore/master.svg)](https://ci.appveyor.com/project/tompazourek/heroicons-aspnetcore)
 [![Tests](https://img.shields.io/appveyor/tests/tompazourek/heroicons-aspnetcore/master.svg)](https://ci.appveyor.com/project/tompazourek/heroicons-aspnetcore/build/tests)
-[![codecov](https://codecov.io/gh/tompazourek/Heroicons.AspNetCore.Mvc.TagHelpers/branch/master/graph/badge.svg?token=31JTU6543K)](https://codecov.io/gh/tompazourek/Heroicons.AspNetCore.Mvc.TagHelpers)
+[![codecov](https://codecov.io/gh/tompazourek/Heroicons.AspNetCore/branch/master/graph/badge.svg?token=31JTU6543K)](https://codecov.io/gh/tompazourek/Heroicons.AspNetCore)
 [![NuGet version](https://img.shields.io/nuget/v/Heroicons.AspNetCore.Mvc.TagHelpers.svg)](https://www.nuget.org/packages/Heroicons.AspNetCore.Mvc.TagHelpers/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Heroicons.AspNetCore.Mvc.TagHelpers.svg)](https://www.nuget.org/packages/Heroicons.AspNetCore.Mvc.TagHelpers/)
 
