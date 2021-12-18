@@ -1,7 +1,4 @@
-﻿<Project>
-
-  <Sdk Name="Microsoft.NET.Sdk" />
-  <Sdk Name="Yarn.MSBuild" Version="1.22.17" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,10 +11,6 @@
       <_Parameter1>Heroicons.AspNetCore.Mvc.TagHelpers.Generator.Tests</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
-
-  <Target Name="YarnInstall" BeforeTargets="YarnBuild">
-    <Yarn Command="install" Condition=" ! Exists('node_modules/')" />
-  </Target>
 
   <ItemGroup>
     <EmbeddedResource Include="node_modules/**/*.svg" />
