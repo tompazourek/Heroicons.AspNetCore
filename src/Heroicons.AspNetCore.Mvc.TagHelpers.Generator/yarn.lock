@@ -4,5 +4,5 @@
 
 heroicons@^1.0.5:
   version "1.0.5"
-  resolved "https://pkgs.dev.azure.com/oriflame/_packaging/node/npm/registry/heroicons/-/heroicons-1.0.5.tgz#75c8bc02ecd707d93dc86f4a058569ee24ecfe6c"
-  integrity sha1-dci8AuzXB9k9yG9KBYVp7iTs/mw=
+  resolved "https://registry.yarnpkg.com/heroicons/-/heroicons-1.0.5.tgz#75c8bc02ecd707d93dc86f4a058569ee24ecfe6c"
+  integrity sha512-QMidnnCbBSmnuN0ieh6lDvAmIFeUoPyPv0z1/3Q2gM8c69aIcoolMCg9i0MZXwnNE//jWU1sxEFY4T2o1fYgeg==
