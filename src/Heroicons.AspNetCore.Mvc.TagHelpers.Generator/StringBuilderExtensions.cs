@@ -89,5 +89,12 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 
         public static void AppendInternalStaticClass(this StringBuilder sb, int indent, string typeName, Action<StringBuilder, int> inner)
             => sb.AppendCodeBlock(indent, $"internal static class {typeName}", inner);
+
+        public static void AppendXmlDocSummary(this StringBuilder sb, int indent, string summary)
+        {
+            sb.AppendIndentedLine(indent, "/// <summary>");
+            sb.AppendIndentedLine(indent, $"/// {summary}");
+            sb.AppendIndentedLine(indent, "/// </summary>");
+        }
     }
 }

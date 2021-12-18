@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Humanizer;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 
@@ -47,24 +48,34 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
         }
 
         internal static void GenerateHeroiconKindType(StringBuilder sb, IReadOnlyList<string> kinds)
-            => sb.AppendNamespace(0, NamespacePublic, (sb2, indent2)
-                => sb.AppendPublicEnum(indent2, "HeroiconKind", (sb3, indent3) =>
+            => sb.AppendNamespace(0, NamespacePublic, (sb2, indent2) =>
+            {
+                sb2.AppendXmlDocSummary(indent2, "Style kind of the icon.");
+                sb2.AppendPublicEnum(indent2, "HeroiconKind", (sb3, indent3) =>
                 {
                     foreach (var kind in kinds)
                     {
+                        sb3.AppendLine();
+                        sb3.AppendXmlDocSummary(indent3, kind.Kebaberize());
                         sb3.AppendIndentedLine(indent3, $"{kind},");
                     }
-                }));
+                });
+            });
 
         internal static void GenerateHeroiconNameType(StringBuilder sb, IReadOnlyList<string> names)
-            => sb.AppendNamespace(0, NamespacePublic, (sb2, indent2)
-                => sb.AppendPublicEnum(indent2, "HeroiconName", (sb3, indent3) =>
+            => sb.AppendNamespace(0, NamespacePublic, (sb2, indent2) =>
+            {
+                sb2.AppendXmlDocSummary(indent2, "Name of the icon.");
+                sb2.AppendPublicEnum(indent2, "HeroiconName", (sb3, indent3) =>
                 {
                     foreach (var name in names)
                     {
+                        sb3.AppendLine();
+                        sb3.AppendXmlDocSummary(indent3, name.Kebaberize());
                         sb3.AppendIndentedLine(indent3, $"{name},");
                     }
-                }));
+                });
+            });
 
         internal static void GenerateSingleTagBuilderFactory(StringBuilder sb, Icon icon)
             => sb.AppendNamespace(0, NamespaceIcons, (sb2, indent2)
