@@ -140,7 +140,7 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
         }
 
         private static void GenerateSwitchByKindAndNameMethod(StringBuilder sb, int indent, IReadOnlyList<string> kinds)
-            => sb.AppendCodeBlock(indent, $"public static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder CreateTagBuilder({NamespacePublic}.HeroiconKind kind, {NamespacePublic}.{"HeroiconName"} name)", (sb2, indent2)
+            => sb.AppendCodeBlock(indent, $"public static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder CreateTagBuilder({NamespacePublic}.HeroiconKind kind, {NamespacePublic}.HeroiconName name)", (sb2, indent2)
                 => sb2.AppendCodeBlock(indent2, "return kind switch ", (sb3, indent3)
                     => GenerateSwitchByKindAndNameSwitchItems(sb3, indent3, kinds), semicolon: true));
 

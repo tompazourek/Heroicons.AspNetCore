@@ -1,0 +1,25 @@
+image: Visual Studio 2022
+
+# Adds "+build.XXX" to MinVer's build metadata
+environment:
+  MINVERBUILDMETADATA: build.%APPVEYOR_BUILD_NUMBER%
+
+# AppVeyor's displayed version, will get updated by MSBuild target
+version: '{build}'
+
+before_build:
+- yarn install --frozen-lockfile --cwd ./src/Heroicons.AspNetCore.Mvc.TagHelpers.Generator
+- dotnet restore
+
+build_script:
+- dotnet build --no-restore --configuration Release
+
+test_script:
+- dotnet test --no-build --configuration Release -p:CollectCoverage=true
+
+after_test:
+- choco install codecov
+- pwsh: codecov --file @(ls ./testresults/*.opencover.xml)
+
+artifacts:
+- path: ./**/*.nupkg
