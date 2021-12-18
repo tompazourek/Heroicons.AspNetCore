@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heroicons.AspNetCore.Mvc.Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heroicons.AspNetCore.Mvc.TagHelpers", "src\Heroicons.AspNetCore.Mvc.TagHelpers\Heroicons.AspNetCore.Mvc.TagHelpers.csproj", "{CB0D60F9-CD25-48BC-BA02-D2D15B6CE3B7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{9B42FCF4-39DC-4AA2-BA36-28A29D436ED6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9B42FCF4-39DC-4AA2-BA36-28A29D436ED6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Heroicons.AspNetCore.Mvc.TagHelpers.Sample", "tests\Heroicons.AspNetCore.Mvc.TagHelpers.Sample\Heroicons.AspNetCore.Mvc.TagHelpers.Sample.csproj", "{7E9D1F8F-77F9-4E5A-974C-B9144B60E6D4}"
 EndProject
