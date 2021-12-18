@@ -25,12 +25,12 @@ The library is also [published on NuGet.org](https://www.nuget.org/packages/Hero
 PM> Install-Package Heroicons.AspNetCore.Mvc.TagHelpers
 ```
 
-<sup>The package is built only for .NET 6 and ASP.NET MVC Core.</sup>
+<sup>The package is built only for .NET 6 and ASP.NET Core MVC.</sup>
 
 Usage
 -----
 
-- Add package to your ASP.NET MVC Core project.
+- Add package to your ASP.NET Core MVC project.
 - Find `_ViewImports.cshtml` file and add the following line:
 
 ```cshtml
