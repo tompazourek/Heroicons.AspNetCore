@@ -137,7 +137,7 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 
         private static void GenerateSwitchByNameMethod(StringBuilder sb, int indent, string kind, IReadOnlyList<string> names)
             => sb.AppendCodeBlock(indent, $"private static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder CreateTagBuilder_{kind}({NamespacePublic}.HeroiconName name)", (sb2, indent2)
-                => sb2.AppendCodeBlock(indent2, "return name switch ", (sb3, indent3)
+                => sb2.AppendCodeBlock(indent2, "return name switch", (sb3, indent3)
                     => GenerateSwitchByKindSwitchItems(sb3, indent3, kind, names), semicolon: true));
 
         private static void GenerateSwitchByKindSwitchItems(StringBuilder sb, int indent, string kind, IReadOnlyList<string> names)
@@ -152,7 +152,7 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 
         private static void GenerateSwitchByKindAndNameMethod(StringBuilder sb, int indent, IReadOnlyList<string> kinds)
             => sb.AppendCodeBlock(indent, $"public static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder CreateTagBuilder({NamespacePublic}.HeroiconKind kind, {NamespacePublic}.HeroiconName name)", (sb2, indent2)
-                => sb2.AppendCodeBlock(indent2, "return kind switch ", (sb3, indent3)
+                => sb2.AppendCodeBlock(indent2, "return kind switch", (sb3, indent3)
                     => GenerateSwitchByKindAndNameSwitchItems(sb3, indent3, kinds), semicolon: true));
 
         private static void GenerateSwitchByKindAndNameSwitchItems(StringBuilder sb, int indent, IReadOnlyList<string> kinds)
