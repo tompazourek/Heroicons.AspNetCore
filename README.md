@@ -45,7 +45,7 @@ Usage
 
 - The `kind` corresponds to style kind enum, currently, either `Solid` or `Outline`.
 - The `name` corresponds to individual icons, currently there are over 200 of them. See https://heroicons.com/ for the complete overview.
-- Note that you can easily apply additional attributes (e.g. CSS classes):
+- Note that you can easily apply additional attributes (e.g. CSS classes), which makes it great for use with Tailwind CSS:
 
 ```cshtml
 <heroicon class="ml-2 -mr-0.5 h-4 w-4" kind="Solid" name="Mail" />
