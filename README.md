@@ -25,9 +25,28 @@ The library is also [published on NuGet.org](https://www.nuget.org/packages/Hero
 PM> Install-Package Heroicons.AspNetCore.Mvc.TagHelpers
 ```
 
-<sup>Heroicons.AspNetCore.Mvc.TagHelpers is built for .NET 6.</sup>
+<sup>Heroicons.AspNetCore.Mvc.TagHelpers is built only for .NET 6 and ASP.NET MVC Core.</sup>
 
 Usage
 -----
 
-TBD
+- Add package to your ASP.NET MVC Core project.
+- Find `_ViewImports.cshtml` file and add the following line:
+
+```cshtml
+@addTagHelper *, Heroicons.AspNetCore.Mvc.TagHelpers
+```
+
+- In your `*.cshtml` views, you can then use the icon as tag helper:
+
+```cshtml
+<heroicon kind="Solid" name="Mail" />
+```
+
+- The `kind` corresponds to style kind enum, currently, either `Solid` or `Outline`.
+- The `name` corresponds to individual icons, currently there are over 200 of them. See https://heroicons.com/ for the complete overview.
+- Note that you can easily apply additional attributes (e.g. CSS classes):
+
+```cshtml
+<heroicon class="ml-2 -mr-0.5 h-4 w-4" kind="Solid" name="Mail" />
+```
