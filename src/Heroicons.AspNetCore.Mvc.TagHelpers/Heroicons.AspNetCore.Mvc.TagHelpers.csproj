@@ -18,8 +18,8 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageReleaseNotes>$(RepositoryUrl)/releases</PackageReleaseNotes>
     <!--<PackageIcon>logo_64.png</PackageIcon>-->
-    <PackageTags>TBD</PackageTags>
-    <Description>TBD</Description>
+    <PackageTags>icons taghelpers aspnet-core razor tailwindcss</PackageTags>
+    <Description>Heroicons (https://heroicons.com/) that are easy to use in ASP.NET Core MVC as TagHelpers.</Description>
   </PropertyGroup>
 
   <PropertyGroup Label="Symbols, docs">
