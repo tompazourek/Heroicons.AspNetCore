@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Heroicons.Net\Heroicons.Net\Heroicons.Net.csproj" />
+    <ProjectReference Include="..\..\src\Heroicons.AspNetCore.Mvc.TagHelpers\Heroicons.AspNetCore.Mvc.TagHelpers.csproj" />
   </ItemGroup>
 
 </Project>

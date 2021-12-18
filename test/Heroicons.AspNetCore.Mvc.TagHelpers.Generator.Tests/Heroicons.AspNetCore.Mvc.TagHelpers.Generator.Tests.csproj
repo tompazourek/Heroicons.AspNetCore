@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Heroicons.Net.Generator\Heroicons.Net.Generator.csproj" />
+    <ProjectReference Include="..\..\src\Heroicons.AspNetCore.Mvc.TagHelpers.Generator\Heroicons.AspNetCore.Mvc.TagHelpers.Generator.csproj" />
   </ItemGroup>
 
 </Project>
