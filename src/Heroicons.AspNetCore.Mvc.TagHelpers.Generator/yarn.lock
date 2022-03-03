@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-heroicons@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/heroicons/-/heroicons-1.0.5.tgz#75c8bc02ecd707d93dc86f4a058569ee24ecfe6c"
-  integrity sha512-QMidnnCbBSmnuN0ieh6lDvAmIFeUoPyPv0z1/3Q2gM8c69aIcoolMCg9i0MZXwnNE//jWU1sxEFY4T2o1fYgeg==
+heroicons@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/heroicons/-/heroicons-1.0.6.tgz#1c2b2e0935a46516c3513afacfcaea71f0b68dd7"
+  integrity sha512-5bxTsG2hyNBF0l+BrFlZlR5YngQNMfl0ggJjIRkMSADBQbaZMoTg47OIQzq6f1mpEZ85HEIgSC4wt5AeFM9J2Q==
