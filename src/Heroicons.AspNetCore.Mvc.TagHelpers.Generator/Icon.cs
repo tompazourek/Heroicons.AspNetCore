@@ -15,7 +15,14 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
             ManifestResourceName = manifestResourceName;
 
             var parts = manifestResourceName.Split('.');
-            Kind = GetIdentifier(parts, parts.Length - 3);
+
+            Kind = GetIdentifier(parts, parts.Length - 4) switch
+            {
+                "_20" => "Mini",
+                "_24" => GetIdentifier(parts, parts.Length - 3),
+                _ => throw new InvalidOperationException($"Unknown size name part in '{manifestResourceName}'")
+            };
+
             Name = GetIdentifier(parts, parts.Length - 2);
         }
 

@@ -40,15 +40,15 @@ Usage
 - In your `*.cshtml` views, you can then use the icon as tag helper:
 
 ```cshtml
-<heroicon kind="Solid" name="Mail" />
+<heroicon kind="Solid" name="Envelope" />
 ```
 
-- The `kind` corresponds to style kind enum, currently, either `Solid` or `Outline`.
+- The `kind` corresponds to style kind enum, currently, either `Solid`, `Outline`, or `Mini`.
 - The `name` corresponds to individual icons, currently there are over 200 of them. See https://heroicons.com/ for the complete overview.
 - Note that you can easily apply additional attributes (e.g. CSS classes), which makes it great for use with Tailwind CSS:
 
 ```cshtml
-<heroicon class="ml-2 -mr-0.5 h-4 w-4" kind="Solid" name="Mail" />
+<heroicon class="ml-2 -mr-0.5 h-4 w-4" kind="Solid" name="Envelope" />
 ```
 
 - You can also try the sample project in the `tests/` folder to see it running.
