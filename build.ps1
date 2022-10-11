@@ -1,2 +1,4 @@
-yarn install --cwd ./src/Heroicons.AspNetCore.Mvc.TagHelpers.Generator
+cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers.Generator
+npm install
+cd ../..
 dotnet build

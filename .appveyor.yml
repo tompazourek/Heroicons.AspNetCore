@@ -8,7 +8,9 @@ environment:
 version: '{build}'
 
 before_build:
-- yarn install --frozen-lockfile --cwd ./src/Heroicons.AspNetCore.Mvc.TagHelpers.Generator
+- cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers.Generator
+- npm ci
+- cd ../..
 - dotnet restore
 
 build_script:
