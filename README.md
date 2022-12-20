@@ -25,7 +25,7 @@ The library is also [published on NuGet.org](https://www.nuget.org/packages/Hero
 PM> Install-Package Heroicons.AspNetCore.Mvc.TagHelpers
 ```
 
-<sup>The package is built only for .NET 6 and ASP.NET Core MVC.</sup>
+<sup>The package is built only for .NET 6 and ASP.NET Core MVC, but should be compatible with next versions as well.</sup>
 
 Usage
 -----
