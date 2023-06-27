@@ -8,10 +8,7 @@ environment:
 version: '{build}'
 
 before_build:
-- cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers
-- npm ci
-- cd ../..
-- dotnet restore
+- ps: ci.ps1
 
 build_script:
 - dotnet build --no-restore --configuration Release
