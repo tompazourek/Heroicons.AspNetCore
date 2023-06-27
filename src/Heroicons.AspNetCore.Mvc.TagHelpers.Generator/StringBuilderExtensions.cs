@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Text;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 {
@@ -13,64 +15,10 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 
         public static void AppendIndent(this StringBuilder sb, int indent) => sb.Append(' ', indent * 4);
 
-        /// <remarks>
-        /// https://stackoverflow.com/a/14087738/108374
-        /// </remarks>
         public static void AppendStringLiteral(this StringBuilder sb, string input)
         {
-            sb.Append("\"");
-            foreach (var c in input)
-            {
-                switch (c)
-                {
-                    case '\"':
-                        sb.Append("\\\"");
-                        break;
-                    case '\\':
-                        sb.Append(@"\\");
-                        break;
-                    case '\0':
-                        sb.Append(@"\0");
-                        break;
-                    case '\a':
-                        sb.Append(@"\a");
-                        break;
-                    case '\b':
-                        sb.Append(@"\b");
-                        break;
-                    case '\f':
-                        sb.Append(@"\f");
-                        break;
-                    case '\n':
-                        sb.Append(@"\n");
-                        break;
-                    case '\r':
-                        sb.Append(@"\r");
-                        break;
-                    case '\t':
-                        sb.Append(@"\t");
-                        break;
-                    case '\v':
-                        sb.Append(@"\v");
-                        break;
-                    default:
-                        // ASCII printable character
-                        if (c >= 0x20 && c <= 0x7e)
-                        {
-                            sb.Append(c);
-                            // As UTF16 escaped character
-                        }
-                        else
-                        {
-                            sb.Append(@"\u");
-                            sb.Append(((int)c).ToString("x4"));
-                        }
-
-                        break;
-                }
-            }
-
-            sb.Append("\"");
+            using var sw = new StringWriter(sb);
+            SyntaxFactory.Literal(input).WriteTo(sw);
         }
 
         public static void AppendCodeBlock(this StringBuilder sb, int indent, string line, Action<StringBuilder, int> inner, bool semicolon = false)
