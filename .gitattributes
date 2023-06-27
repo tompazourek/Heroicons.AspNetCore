@@ -1,6 +1,9 @@
 * text eol=crlf
 *.cs diff=csharp
 *.png binary
+
+package.json eol=lf
+
 .gitattributes  export-ignore
 .gitignore      export-ignore
 
