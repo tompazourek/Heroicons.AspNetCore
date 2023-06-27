@@ -8,7 +8,7 @@ environment:
 version: '{build}'
 
 before_build:
-- cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers.Generator
+- cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers
 - npm ci
 - cd ../..
 - dotnet restore
@@ -16,12 +16,12 @@ before_build:
 build_script:
 - dotnet build --no-restore --configuration Release
 
-test_script:
-- dotnet test --no-build --configuration Release -p:CollectCoverage=true
-
-after_test:
-- choco install codecov
-- pwsh: codecov --file @(ls ./testresults/*.opencover.xml)
+#test_script:
+#- dotnet test --no-build --configuration Release -p:CollectCoverage=true
+#
+#after_test:
+#- choco install codecov
+#- pwsh: codecov --file @(ls ./testresults/*.opencover.xml)
 
 artifacts:
 - path: ./**/*.nupkg

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -10,37 +11,49 @@ using Microsoft.CodeAnalysis.Text;
 namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 {
     [Generator]
-    public class HeroiconSourceGenerator : ISourceGenerator
+    public class HeroiconSourceGenerator : IIncrementalGenerator
     {
         private const string NamespacePublic = "Heroicons.AspNetCore.Mvc.TagHelpers";
         private const string NamespaceInternal = NamespacePublic + ".Internal";
         private const string NamespaceIcons = NamespaceInternal + ".Icons";
 
-        public void Initialize(GeneratorInitializationContext context)
+        public void Initialize(IncrementalGeneratorInitializationContext initContext)
         {
-        }
+            var iconProvider = initContext.AdditionalTextsProvider
+                .Where(static x => x.Path.EndsWith(".svg"))
+                .Select(static (x, ct) => new Icon(x.Path, x.GetText(ct)!));
 
-        public void Execute(GeneratorExecutionContext context)
-        {
-            var icons = Icon.GetAll();
-            var kinds = icons.Select(x => x.Kind).Distinct().OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToList();
-            var names = icons.Select(x => x.Name).Distinct().OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToList();
+            var iconsProvider = iconProvider.Collect();
 
-            // generate public enums
-            GenerateFile(context, "HeroiconKind", sb => GenerateHeroiconKindType(sb, kinds));
-            GenerateFile(context, "HeroiconName", sb => GenerateHeroiconNameType(sb, names));
+            var kindsProvider = iconsProvider.Select(static (icons, _) =>
+                icons.Select(static x => x.Kind).Distinct().OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToImmutableList());
+
+            var namesProvider = iconsProvider.Select(static (iconCollection, _) =>
+                iconCollection.Select(static x => x.Name).Distinct().OrderBy(x => x, StringComparer.OrdinalIgnoreCase).ToImmutableList());
+
+            var kindsNamesProvider = kindsProvider.Combine(namesProvider);
 
             // generate tag builder for each icon
-            foreach (var icon in icons)
-            {
-                GenerateFile(context, $"{icon.Kind}_{icon.Name}", sb => GenerateSingleTagBuilderFactory(sb, icon));
-            }
+            initContext.RegisterSourceOutput(iconProvider, static (productionContext, icon) =>
+                GenerateFile(productionContext, $"{icon.Kind}_{icon.Name}", sb =>
+                    GenerateSingleTagBuilderFactory(sb, icon)));
+
+            // generate public enums
+            initContext.RegisterSourceOutput(kindsProvider, static (productionContext, kinds) =>
+                GenerateFile(productionContext, "HeroiconKind", sb =>
+                    GenerateHeroiconKindType(sb, kinds)));
+
+            initContext.RegisterSourceOutput(namesProvider, static (productionContext, names) =>
+                GenerateFile(productionContext, "HeroiconName", sb =>
+                    GenerateHeroiconNameType(sb, names)));
 
             // generate tag builder factory by kind and name enums
-            GenerateFile(context, "HeroiconTagBuilderFactory", sb => GenerateHeroiconTagBuilderFactoryType(sb, kinds, names));
+            initContext.RegisterSourceOutput(kindsNamesProvider, static (productionContext, kindsNames) =>
+                GenerateFile(productionContext, "HeroiconTagBuilderFactory", sb =>
+                    GenerateHeroiconTagBuilderFactoryType(sb, kindsNames.Left, kindsNames.Right)));
         }
 
-        private static void GenerateFile(GeneratorExecutionContext context, string fileName, Action<StringBuilder> generator)
+        private static void GenerateFile(SourceProductionContext context, string fileName, Action<StringBuilder> generator)
         {
             var sb = new StringBuilder();
             generator(sb);
@@ -78,7 +91,7 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
             });
 
         internal static void GenerateSingleTagBuilderFactory(StringBuilder sb, Icon icon)
-            => sb.AppendNamespace(0, NamespaceIcons, (sb2, indent2)
+            => sb.AppendNamespace(0, NamespaceIcons, (_, indent2)
                 => sb.AppendInternalStaticClass(indent2, $"{icon.Kind}_{icon.Name}", (sb3, indent3)
                     => GenerateSingleTagBuilderFactoryMethod(sb3, indent3, icon)));
 
@@ -88,8 +101,8 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 
         private static void GenerateSingleTagBuilderFactoryMethodContents(StringBuilder sb, int indent, Icon icon)
         {
-            using var iconStream = icon.GetContentStream();
-            var svgNode = XDocument.Load(iconStream).Root!;
+            var sourceString = icon.SourceText.ToString();
+            var svgNode = XDocument.Parse(sourceString).Root!;
 
             sb.AppendCodeBlock(indent, $@"var tagBuilder = new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(""{svgNode.Name.LocalName}"")", (sb2, indent2)
                 => sb2.AppendCodeBlock(indent2, "Attributes =", (sb3, indent3)
@@ -122,7 +135,7 @@ namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
         }
 
         public static void GenerateHeroiconTagBuilderFactoryType(StringBuilder sb, IReadOnlyList<string> kinds, IReadOnlyList<string> names)
-            => sb.AppendNamespace(0, NamespaceInternal, (sb2, indent2)
+            => sb.AppendNamespace(0, NamespaceInternal, (_, indent2)
                 => sb.AppendInternalStaticClass(indent2, "HeroiconTagBuilderFactory", (sb3, indent3) =>
                 {
                     GenerateSwitchByKindAndNameMethod(sb3, indent3, kinds);

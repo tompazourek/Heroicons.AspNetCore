@@ -1,47 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using Humanizer;
+using Microsoft.CodeAnalysis.Text;
 
 namespace Heroicons.AspNetCore.Mvc.TagHelpers.Generator
 {
     internal class Icon
     {
-        protected Icon(string manifestResourceName)
+        public Icon(string path, SourceText sourceText)
         {
-            if (string.IsNullOrEmpty(manifestResourceName)) throw new ArgumentException("Value cannot be null or empty.", nameof(manifestResourceName));
-            ManifestResourceName = manifestResourceName;
+            if (path == null) throw new ArgumentNullException(nameof(path));
+            if (sourceText == null) throw new ArgumentNullException(nameof(sourceText));
 
-            var parts = manifestResourceName.Split('.');
+            var parts = path.Split('/', '\\');
 
-            Kind = GetIdentifier(parts, parts.Length - 4) switch
+            Name = GetIdentifier(Path.GetFileNameWithoutExtension(path));
+            SourceText = sourceText;
+            
+            var partSize = parts[parts.Length - 3];
+            if (partSize == "20")
             {
-                "_20" => "Mini",
-                "_24" => GetIdentifier(parts, parts.Length - 3),
-                _ => throw new InvalidOperationException($"Unknown size name part in '{manifestResourceName}'")
-            };
-
-            Name = GetIdentifier(parts, parts.Length - 2);
+                Kind = "Mini";
+            }
+            else
+            {
+                var partType = parts[parts.Length - 2];
+                Kind = GetIdentifier(partType);
+            }
         }
 
-        private static string GetIdentifier(IReadOnlyList<string> parts, int index) => parts[index].Replace('-', ' ').Pascalize();
+        private static string GetIdentifier(string input) => input.Replace('-', ' ').Pascalize();
 
-        protected string ManifestResourceName { get; }
         public string Kind { get; }
         public string Name { get; }
-
-        private static readonly Assembly AssemblyWithResources = typeof(Icon).Assembly;
-        public Stream GetContentStream() => AssemblyWithResources.GetManifestResourceStream(ManifestResourceName);
-
-        public static IReadOnlyList<Icon> GetAll()
-            => AssemblyWithResources.GetManifestResourceNames()
-                .Where(x => x.EndsWith("svg"))
-                .Select(x => new Icon(x))
-                .OrderBy(x => x.Kind, StringComparer.OrdinalIgnoreCase)
-                .ThenBy(x => x.Name, StringComparer.OrdinalIgnoreCase)
-                .ToList();
+        public SourceText SourceText { get; }
 
         public override string ToString() => $"{Kind}/{Name}";
     }
