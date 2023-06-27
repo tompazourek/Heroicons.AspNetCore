@@ -1,9 +1,5 @@
 image: Visual Studio 2022
 
-# Adds "+build.XXX" to MinVer's build metadata
-environment:
-  MINVERBUILDMETADATA: build.%APPVEYOR_BUILD_NUMBER%
-
 # AppVeyor's displayed version, will get updated by MSBuild target
 version: '{build}'
 
@@ -12,6 +8,7 @@ before_build:
     cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers
     npm ci
     $env:HEROICONS_VERSION = (npm list --json | ConvertFrom-Json).dependencies.heroicons.version
+    $env:MINVERBUILDMETADATA = "heroicons.$env:HEROICONS_VERSION.build.$env:APPVEYOR_BUILD_NUMBER"
     cd ../..
     dotnet restore
 
