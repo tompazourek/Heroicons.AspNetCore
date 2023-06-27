@@ -11,12 +11,12 @@ before_build:
 - ps: |
     cd ./src/Heroicons.AspNetCore.Mvc.TagHelpers
     npm ci
+    $env:HEROICONS_VERSION = (npm list --json | ConvertFrom-Json).dependencies.heroicons.version
     cd ../..
     dotnet restore
 
 build_script:
 - ps: |
-    $env:HEROICONS_VERSION = (npm list --json | ConvertFrom-Json).dependencies.heroicons.version
     $env:HEROICONS_VERSION
     dotnet build --no-restore --configuration Release
 
