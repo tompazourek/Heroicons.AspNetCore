@@ -17,6 +17,7 @@ before_build:
 build_script:
 - ps: |
     $env:HEROICONS_VERSION = (npm list --json | ConvertFrom-Json).dependencies.heroicons.version
+    $env:HEROICONS_VERSION
     dotnet build --no-restore --configuration Release
 
 #test_script:
