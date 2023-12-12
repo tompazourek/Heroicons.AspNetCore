@@ -22,7 +22,7 @@ Binaries of the last build can be downloaded on the [AppVeyor CI page of the pro
 The library is also [published on NuGet.org](https://www.nuget.org/packages/Heroicons.AspNetCore.Mvc.TagHelpers/), install using:
 
 ```
-PM> Install-Package Heroicons.AspNetCore.Mvc.TagHelpers
+dotnet add package Heroicons.AspNetCore.Mvc.TagHelpers
 ```
 
 <sup>The package is built for .NET 6 or newer and ASP.NET Core MVC, but should be compatible with next versions as well.</sup>
