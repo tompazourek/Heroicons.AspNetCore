@@ -22,7 +22,8 @@ public class HeroiconSourceGenerator : IIncrementalGenerator
     {
         var iconProvider = context.AdditionalTextsProvider
             .Where(static x => x.Path.EndsWith(".svg"))
-            .Select(static (x, ct) => new Icon(x.Path, x.GetText(ct)!));
+            .Select(static (x, ct) => new Icon(x.Path, x.GetText(ct)!))
+            .Where(static x => !x.IsDeprecated);
 
         var iconsProvider = iconProvider.Collect();
 
