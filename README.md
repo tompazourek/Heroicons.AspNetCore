@@ -1,4 +1,4 @@
-![Heroicons.AspNetCore logo](https://raw.githubusercontent.com/tompazourek/Heroicons.AspNetCore/master/assets/logo_32.png) Heroicons.AspNetCore
+﻿![Heroicons.AspNetCore logo](https://raw.githubusercontent.com/tompazourek/Heroicons.AspNetCore/master/assets/logo_32.png) Heroicons.AspNetCore
 =====================
 
 *[Heroicons](https://heroicons.com/) that are easy to use in ASP.NET Core MVC as TagHelpers.*
@@ -43,7 +43,7 @@ Usage
 <heroicon kind="Solid" name="Envelope" />
 ```
 
-- The `kind` corresponds to style kind enum, currently, either `Solid`, `Outline`, or `Mini`.
+- The `kind` corresponds to style kind enum, currently, either `Solid` (24x24) `Outline` (24x24), `Mini` (20x20), or `Micro` (16x16).
 - The `name` corresponds to individual icons, currently there are over 200 of them. See https://heroicons.com/ for the complete overview.
 - Note that you can easily apply additional attributes (e.g. CSS classes), which makes it great for use with Tailwind CSS:
 

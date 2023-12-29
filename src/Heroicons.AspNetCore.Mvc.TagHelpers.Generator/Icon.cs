@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Humanizer;
 using Microsoft.CodeAnalysis.Text;
 
@@ -15,14 +14,21 @@ internal class Icon
 
         var parts = path.Split('/', '\\');
         var partSize = parts[parts.Length - 3];
-        if (partSize == "20")
+
+        switch (partSize)
         {
-            Kind = "Mini";
-        }
-        else
-        {
-            var partType = parts[parts.Length - 2];
-            Kind = GetIdentifier(partType);
+            case "16":
+                Kind = "Micro";
+                break;
+            case "20":
+                Kind = "Mini";
+                break;
+            default:
+            {
+                var partType = parts[parts.Length - 2];
+                Kind = GetIdentifier(partType);
+                break;
+            }
         }
     }
 
@@ -31,6 +37,16 @@ internal class Icon
     public string Kind { get; }
     public string Name { get; }
     public SourceText SourceText { get; }
+
+    public bool IsDeprecated => Name is
+        "ArrowLeftOnRectangle" or
+        "ArrowRightOnRectangle" or
+        "ArrowSmallDown" or
+        "ArrowSmallLeft" or
+        "ArrowSmallRight" or
+        "ArrowSmallUp" or
+        "MinusSmall" or
+        "PlusSmall";
 
     public override string ToString() => $"{Kind}/{Name}";
 }
