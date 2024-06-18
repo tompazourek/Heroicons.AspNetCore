@@ -6,6 +6,6 @@
   "author": "tom.pazourek@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "heroicons": "^2.1.3"
+    "heroicons": "^2.1.4"
   }
 }
